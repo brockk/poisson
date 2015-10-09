@@ -1,0 +1,11 @@
+* installing *source* package 'Poisson' ...
+** R
+** preparing package for lazy loading
+Creating a generic function for 'plot' from package 'graphics' in package 'Poisson'
+** help
+*** installing help indices
+Error in Rd_info(db[[i]]) : 
+  missing/empty \title field in 'T:/Code/R/poisson/poisson/man/hpp.lik.Rd'
+Rd files must have a non-empty \title.
+See chapter 'Writing R documentation' in manual 'Writing R Extensions'.
+* removing 'T:/Code/R/poisson/poisson.Rcheck/Poisson'

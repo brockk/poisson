@@ -1,0 +1,17 @@
+* using log directory 'T:/Code/R/poisson/poisson.Rcheck'
+* using R version 3.0.3 (2014-03-06)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: ISO8859-1
+* checking for file 'poisson/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'Poisson' version '1.0'
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for .dll and .exe files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking whether package 'Poisson' can be installed ... ERROR
+Installation failed.
+See 'T:/Code/R/poisson/poisson.Rcheck/00install.out' for details.

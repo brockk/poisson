@@ -1,0 +1,8 @@
+exportPattern("^[[:alpha:]]+")
+exportMethods(
+    "plot",
+    "show" 
+)
+exportClasses(
+    "PoissonProcessScenario" 
+)

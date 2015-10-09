@@ -1,0 +1,11 @@
+Package: Poisson
+Type: Package
+Title: Simulating Homogenous & Non-Homogenous Poisson Processes
+Version: 1.0
+Date: 2015-10-01
+Authors@R: c(person("Kristian", "Brock", role = c("aut")), person("Daniel", "Slade", role = "ctb"))
+Author: Kristian Brock [aut], Daniel Slade [ctb]
+Maintainer: Daniel Slade <sladeD@bham.ac.uk>
+Description: A collection of functions for simulating homogenous and non-homogenous poisson processes
+License: GPL-2
+
