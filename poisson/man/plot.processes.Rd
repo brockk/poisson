@@ -59,10 +59,7 @@ plot.processes(x, y = NULL, xlab = "t (years)", ylab = "N", type = "l", lty = 2,
 \references{
 %% ~put references to the literature/web site here ~
 }
-\author{
-%%  ~~who you are~~
-}
-\note{
+\author{Kristian Brock - Author, Daniel Slade - Contributor}\note{
 %%  ~~further notes~~
 }
 
