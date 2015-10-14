@@ -1,6 +1,7 @@
 \name{hpp.plot}
 \alias{hpp.plot}
 \alias{plot.processes}
+\alias{hpp.sim}
 \title{Plot simulated homogeneous Poisson processes}
 \description{Plot simulated homogeneous Poisson processes, also returning the mean and quantiles}
 \usage{hpp.plot(rate, num.events, num.sims = 100, t0 = 0, t1 = NULL, num.points = 100, quantiles = c(0.025, 0.975), ...)}
@@ -25,6 +26,6 @@
 %%  ~~who you are~~
 }
 \examples{
-
+%%%%%%%
 }
 \keyword{poisson}
