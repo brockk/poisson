@@ -23,3 +23,12 @@ curve(intensity, from = 0, to = 5, main='Intensity function', xname = 't')
 # when the event intensity is at 100%. Our hitting time is 50 events.
 X <- nhpp.scenario(rate = 10, num.events = 50, prob.func = intensity)
 plot(X, main='Expect 50 events within 5-8 years')
+
+
+# install.packages('rstudio')
+# require(rstudio)
+install.packages('devtools')
+require(devtools)
+find_rtools()
+load_all('poisson')
+dev_help('hpp.mean')

@@ -11,11 +11,11 @@ Note: the rate parameter is often referred to as lambda.}
   \item{t0}{start time}
 }
 \value{A numeric vector of length num.events if num.sims=1, 
-else, a num.events x num.sims matrix }
+else, a num.events by num.sims matrix }
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
 rate <- 10
 target <- 50
-hpp.event.times(rate,target)
+hpp.event.times(rate, target)
 }
 \keyword{poisson}
