@@ -1,47 +1,44 @@
 \name{nhpp.plot}
 \alias{nhpp.plot}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\alias{plot.processes}
+\alias{nhhp.sim}
+\alias{nhhp.mean}
 \title{
-%%  ~~function to do ... ~~
+Plot simulated non-homogeneous Poisson processes
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Plot num.events simulated non-homogeneous Poisson processes, plus
+the mean and quantiles
 }
 \usage{
 nhpp.plot(rate, num.events, prob.func, num.sims = 100, t0 = 0, t1 = NULL, num.points = 100, quantiles = c(0.025, 0.975), ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{rate}{
-%%     ~~Describe \code{rate} here~~
+the rate at which events occur in the Poisson process, aka lambda
 }
   \item{num.events}{
-%%     ~~Describe \code{num.events} here~~
+the number of event times to simulate in each process
 }
   \item{prob.func}{
-%%     ~~Describe \code{prob.func} here~~
+function that takes time as sole argument and returns value between 0 and 1
 }
   \item{num.sims}{
-%%     ~~Describe \code{num.sims} here~~
+number of simulated paths to plot
 }
   \item{t0}{
-%%     ~~Describe \code{t0} here~~
+start time
 }
   \item{t1}{
-%%     ~~Describe \code{t1} here~~
+end time
 }
   \item{num.points}{
-%%     ~~Describe \code{num.points} here~~
+number of points to use in estimating mean and quantile processes
 }
   \item{quantiles}{
-%%     ~~Describe \code{quantiles} here~~
+plot these quantile processes
 }
-  \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+\item{\dots}{further arguments to be passed to or from methods
 }
 \value{
 %%  ~Describe the value returned
@@ -50,44 +47,9 @@ nhpp.plot(rate, num.events, prob.func, num.sims = 100, t0 = 0, t1 = NULL, num.po
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+Kristian Brock - Author, Daniel Slade - Contributor
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (rate, num.events, prob.func, num.sims = 100, t0 = 0, 
-    t1 = NULL, num.points = 100, quantiles = c(0.025, 0.975), 
-    ...) 
-{
-    x = nhpp.sim(rate, num.events, prob.func, num.sims)
-    if (is.null(t1)) 
-        t1 = 1.1 * max(x)
-    plot.processes(x, xlim = c(t0, t1), ...)
-    x.bar = nhpp.mean(rate, prob.func, t0, t1, num.points, maximum = num.events)
-    lines(seq(t0, t1, length.out = num.points), x.bar, col = "darkorange1", 
-        lwd = 2)
-    x.q = t(apply(x, 1, function(x) quantile(x, probs = quantiles)))
-    plot.processes(x.q, col = "red", lwd = 2, lty = 3, add = T)
-    return(list(x = x, x.bar = x.bar, x.q = x.q))
-  }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%%%%%%%%%%%%%}
+\keyword{poisson}
