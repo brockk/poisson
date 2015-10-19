@@ -77,11 +77,11 @@ hpp.mean <- function(rate, t0=0, t1=1, num.points=100, maximum=NULL) {
 }
 
 hpp.mean.event.times <- function(rate, num.events) {
-  # Calculate the expected event times of a non-homogeneous Poisson process.
+  # Calculate the expected event times of an homogeneous Poisson process.
   # 
   # Params
   #   :rate: the rate at which events occur in the Poisson process, aka lambda
-  #   :num.events: number of event times to simulate in each process
+  #   :num.events: observe mean event times at this many points
   
   return(seq(from=1/rate, length.out=num.events, by=1/rate))
 }
@@ -332,12 +332,19 @@ nhpp.lik <- function(x, T1, rate, prob.func) {
 }
 
 hpp.lik <- function(x, T1, rate) {
-  # TODO: explain
+  # Get the likelihood of a rate parameter at a specific time for observed HPP event times.
+  # Params
+  #   :x: a vector of HPP event times
+  #   :T1: Calculate likelihood at this time
+  #   :rate: the putative HPP event rate
   return(nhpp.lik(x, T1, rate, prob.func=function(x) rep(1, length(x))))
 }
 
 hpp.mle <- function(x, T1) {
-  # TODO: explain
+  # Get the maximum-likelihood rate parameter for given HPP event times.
+  # Params
+  #   :x: a vector of HPP event times
+  #   :T1: Calculate MLE at this time
   return(length(x) / T1)
 }
 

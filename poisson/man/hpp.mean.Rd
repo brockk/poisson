@@ -1,7 +1,7 @@
 \name{hpp.mean}
 \alias{hpp.mean}
 \title{Expected value of an homogeneous Poisson process.}
-\description{Calculate the expected value of an homogeneous Poisson process at varying points in time.}
+\description{Calculate the expected value of an homogeneous Poisson process at regular points in time.}
 \usage{hpp.mean(rate, t0 = 0, t1 = 1, num.points = 100, maximum = NULL)}
 \arguments{
   \item{rate}{The rate at which events occur in the Poisson process, aka lambda}
@@ -13,7 +13,7 @@
 \value{A numeric vector of length num.points}
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
-rate <- 10
-target = 50
-hpp.mean(rate)}
+hpp.mean(rate = 20, t1 = 5, maximum = 50)
+}
 \keyword{poisson}
+\keyword{HPP}

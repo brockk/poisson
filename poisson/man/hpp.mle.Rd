@@ -1,61 +1,19 @@
 \name{hpp.mle}
 \alias{hpp.mle}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
-\usage{
-hpp.mle(x, T1)
-}
-%- maybe also 'usage' for other objects documented here.
+\title{Get the maximum-likelihood rate parameter of an HPP}
+\description{Get the maximum-likelihood rate parameter for given HPP event times.}
+\usage{hpp.mle(x, T1)}
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
+  \item{x}{a vector of HPP event times}
+  \item{T1}{Calculate MLE at this time}
 }
-  \item{T1}{
-%%     ~~Describe \code{T1} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\value{Returns a numeric, the maximum-likelihood rate parameter}
+\author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x, T1) 
-{
-    return(length(x)/T1)
-  }
+X = c(0.17, 0.39, 0.63, 0.78, 0.99)
+hpp.mle(X, T1=1)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{poisson}
+\keyword{maximum likelihood}
+\keyword{MLE}
+\keyword{HPP}

@@ -31,4 +31,36 @@ install.packages('devtools')
 require(devtools)
 find_rtools()
 load_all('poisson')
+
+
+
+# Systematically going through each function / class
+dev_help('hpp.event.times') # Error:  rdFile must be a single element character vector.
+hpp.event.times(rate = 20, num.events = 10)
+
+dev_help('hpp.lik')
+X = c(0.17, 0.39, 0.63, 0.78, 0.99)
+hpp.lik(X, T1 = 1, rate = 4)
+hpp.lik(X, T1 = 1, rate = 5)
+hpp.lik(X, T1 = 1, rate = 6)
+# 5 is the most likely of these three rates
+
+dev_help('hpp.mean.event.times')
+rate <- 10
+hpp.mean.event.times(rate, 50)
+
 dev_help('hpp.mean')
+hpp.mean(rate = 20, t1 = 5, maximum = 50)
+
+dev_help('hpp.mle')
+X = c(0.17, 0.39, 0.63, 0.78, 0.99)
+hpp.mle(X, T1=1)
+
+dev_help('hpp.plot')
+hpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated HPPs')
+
+dev_help('hpp.scenario')
+scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
+
+
+load_all('poisson')

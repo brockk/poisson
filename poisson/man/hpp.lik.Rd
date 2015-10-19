@@ -1,65 +1,23 @@
 \name{hpp.lik}
 \alias{hpp.lik}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... 
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
-\usage{
-hpp.lik(x, T1, rate)
-}
-%- maybe also 'usage' for other objects documented here.
+\title{Homogeneous Poisson process likelihood}
+\description{Get the likelihood of a rate parameter at a specific time for observed HPP event times.}
+\usage{hpp.lik(x, T1, rate)}
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
-  \item{T1}{
-%%     ~~Describe \code{T1} here~~
-}
-  \item{rate}{
-%%     ~~Describe \code{rate} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x, T1, rate) 
-{
-    return(nhpp.lik(x, T1, rate, prob.func = function(x) rep(1, 
-        length(x))))
+  \item{x}{a vector of HPP event times}
+  \item{T1}{Calculate likelihood at this time}
+  \item{rate}{the putative HPP event rate}
   }
+\value{Returns a numerical value for the likelihood.
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\author{Kristian Brock - Author, Daniel Slade - Contributor}
+\examples{
+X = c(0.17, 0.39, 0.63, 0.78, 0.99)
+hpp.lik(X, T1 = 1, rate = 4)
+hpp.lik(X, T1 = 1, rate = 5)
+hpp.lik(X, T1 = 1, rate = 6)
+# 5 is the most likely of these three rates
+}
+\keyword{poisson}
+\keyword{likelihood}
+\keyword{HPP}

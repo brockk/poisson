@@ -1,7 +1,7 @@
 \name{hpp.event.times}
 \alias{hpp.event.times}
 \title{Simulate homogeneous Poisson process event times.}
-\description{Get the n consecutive event times of a homogeneous poisson process with given rate.
+\description{Get the num.events consecutive event times of a random homogeneous poisson process with given rate.
 Note: the rate parameter is often referred to as lambda.}
 \usage{hpp.event.times(rate, num.events, num.sims = 1, t0 = 0)}
 \arguments{
@@ -19,3 +19,5 @@ target <- 50
 hpp.event.times(rate, target)
 }
 \keyword{poisson}
+\keyword{HPP}
+\keyword{simulation}
