@@ -34,8 +34,10 @@ load_all('poisson')
 
 
 
+#When receiving error: rdFile must be a single element character vector. add .Rd to character string of name to fix
+
 # Systematically going through each function / class
-dev_help('hpp.event.times') # Error:  rdFile must be a single element character vector.
+dev_help('hpp.event.times.Rd')
 hpp.event.times(rate = 20, num.events = 10)
 
 dev_help('hpp.lik')
@@ -62,7 +64,10 @@ hpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated HPPs')
 dev_help('hpp.scenario')
 scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
 
-dev_help('hpp.sim') # Error:  rdFile must be a single element character vector.
+dev_help('hpp.sim.Rd')
+rate <- 10
+target = 50
+hpp.sim(rate,target)
 
 dev_help('nhpp.event.times')
 rate <- 10
@@ -83,4 +88,23 @@ intensity <- function(t) pmin(t/3, 1)
 rate <- 10
 nhpp.mean.event.times(rate, 50, prob.func = intensity)
 
+dev_help("nhhp.mean")
+intensity <- function(t) pmin(t/3, 1)
+nhpp.mean(rate = 20, t1 = 5, maximum = 50, prob.func=intensity)
+
+dev_help("nhpp.sim.slow.Rd")
+intensity <- function(t) pmin(t/3, 1)
+rate<-10
+num.events<-100
+nhpp.sim.slow(rate, num.events, prob.func=intensity)
+
+
+
+
+
+
+
 load_all('poisson')
+
+
+
