@@ -296,7 +296,7 @@ nhpp.mean.event.times <- function(rate, num.events, prob.func, max.time=1000) {
 nhpp.plot <- function(rate, num.events, prob.func, num.sims=100,
                               t0=0, t1=NULL, num.points=100, 
                               quantiles=c(0.025, 0.975), ...) {
-  # Plot num.events simulated homogeneous Poisson process, plus
+  # Plot num.events simulated non-homogeneous Poisson process, plus
   # the mean and quantiles
   # Params
   #   :rate: the rate at which events occur in the Poisson process, aka lambda

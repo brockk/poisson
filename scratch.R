@@ -98,8 +98,9 @@ rate<-10
 num.events<-100
 nhpp.sim.slow(rate, num.events, prob.func=intensity)
 
-
-
+dev_help("nhpp.plot.Rd")
+intensity <- function(t) pmin(t/3, 1)
+nhpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated NHPPs',prob.func=intensity)
 
 
 
