@@ -8,8 +8,7 @@
   \item{T1}{Calculate likelihood at this time}
   \item{rate}{the putative HPP event rate}
   }
-\value{Returns a numerical value for the likelihood.
-}
+\value{Returns a numerical value for the likelihood.}
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
 X = c(0.17, 0.39, 0.63, 0.78, 0.99)

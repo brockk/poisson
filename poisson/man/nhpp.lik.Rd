@@ -1,69 +1,25 @@
 \name{nhpp.lik}
 \alias{nhpp.lik}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
-\usage{
-nhpp.lik(x, T1, rate, prob.func)
-}
-%- maybe also 'usage' for other objects documented here.
+\title{Non-homogeneous Poisson process likelihood}
+\description{Get the likelihood of a rate parameter at a specific time for observed NHPP event times and given intensity function.}
+\usage{nhpp.lik(x, T1, rate, prob.func)}
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
+  \item{x}{a vector of HPP event times}
+  \item{T1}{Calculate likelihood at this time}
+  \item{rate}{the putative HPP event rate}
+  \item{prob.func}{aka intensity function, function that takes time as sole argument and returns value between 0 and 1}
 }
-  \item{T1}{
-%%     ~~Describe \code{T1} here~~
-}
-  \item{rate}{
-%%     ~~Describe \code{rate} here~~
-}
-  \item{prob.func}{
-%%     ~~Describe \code{prob.func} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\value{Returns a numerical value for the likelihood.}
+\author{Kristian Brock - Author, Daniel Slade - Contributor}
+\seealso{}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x, T1, rate, prob.func) 
-{
-    lambda.func = function(x) rate * prob.func(x)
-    expectation = integrate(lambda.func, lower = 0, upper = T1)$value
-    return(sum(log(lambda.func(x))) - expectation)
-  }
+intensity <- function(t) pmin(t/3, 1)
+X = c(0.74, 1.50, 1.67, 2.01, 2.27)
+nhpp.lik(X, T1 = 2.3, rate = 5, prob.func = intensity)
+nhpp.lik(X, T1 = 2.3, rate = 6, prob.func = intensity)
+nhpp.lik(X, T1 = 2.3, rate = 7, prob.func = intensity)
+# 6 is the most likely of these three rates
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{poisson}
+\keyword{likelihood}
+\keyword{NHPP}

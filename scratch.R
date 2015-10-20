@@ -62,5 +62,25 @@ hpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated HPPs')
 dev_help('hpp.scenario')
 scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
 
+dev_help('hpp.sim') # Error:  rdFile must be a single element character vector.
+
+dev_help('nhpp.event.times')
+rate <- 10
+target <- 50
+intensity <- function(t) pmin(t/3, 1)
+nhpp.event.times(rate, target, intensity)
+
+dev_help('nhpp.lik')
+intensity <- function(t) pmin(t/3, 1)
+X = c(0.74, 1.50, 1.67, 2.01, 2.27)
+nhpp.lik(X, T1 = 2.3, rate = 5, prob.func = intensity)
+nhpp.lik(X, T1 = 2.3, rate = 6, prob.func = intensity)
+nhpp.lik(X, T1 = 2.3, rate = 7, prob.func = intensity)
+# 6 is the most likely of these three rates
+
+dev_help('nhpp.mean.event.times')
+intensity <- function(t) pmin(t/3, 1)
+rate <- 10
+nhpp.mean.event.times(rate, 50, prob.func = intensity)
 
 load_all('poisson')

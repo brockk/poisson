@@ -1,76 +1,20 @@
 \name{nhpp.mean.event.times}
 \alias{nhpp.mean.event.times}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
-\usage{
-nhpp.mean.event.times(rate, num.events, prob.func, max.time = 1000)
-}
-%- maybe also 'usage' for other objects documented here.
+\title{Expected event times of a non-homogeneous Poisson process.}
+\description{Calculate the expected event times of a non-homogeneous Poisson process.}
+\usage{nhpp.mean.event.times(rate, num.events, prob.func, max.time = 1000)}
 \arguments{
-  \item{rate}{
-%%     ~~Describe \code{rate} here~~
+  \item{rate}{The rate at which events occur in the Poisson process, aka lambda}
+  \item{num.events}{Observe mean event times at this many points}
+  \item{prob.func}{aka intensity function, function that takes time as sole argument and returns value between 0 and 1}
+  \item{max.time}{}
 }
-  \item{num.events}{
-%%     ~~Describe \code{num.events} here~~
-}
-  \item{prob.func}{
-%%     ~~Describe \code{prob.func} here~~
-}
-  \item{max.time}{
-%%     ~~Describe \code{max.time} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+\value{A vector of length num.events giving the expected times}
+\author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (rate, num.events, prob.func, max.time = 1000) 
-{
-    t0 = 0
-    times = c()
-    f <- function(x) rate * prob.func(x)
-    for (i in 1:num.events) {
-        t1 = uniroot(function(x) integrate(f, lower = t0, upper = x)$value - 
-            1, lower = t0, upper = max.time)$root
-        times = c(times, t1)
-        t0 = t1
-    }
-    return(times)
-  }
+intensity <- function(t) pmin(t/3, 1)
+rate <- 10
+nhpp.mean.event.times(rate, 50, prob.func = intensity)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{poisson}
+\keyword{NHPP}
