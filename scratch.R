@@ -102,6 +102,25 @@ dev_help("nhpp.plot.Rd")
 intensity <- function(t) pmin(t/3, 1)
 nhpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated NHPPs',prob.func=intensity)
 
+dev_help("nhpp.sim.Rd")
+intensity <- function(t) pmin(t/3, 1)
+rate<-10
+num.events<-100
+nhpp.sim(rate, num.events, prob.func=intensity)
+
+dev_help("nhpp.mle")
+intensity <- function(t) pmin(t/3, 1)
+X = c(0.74, 1.50, 1.67, 2.01, 2.27)
+nhpp.mle(X, T1=1, prob.func=intensity, max.val = 70)
+
+
+
+
+
+
+
+
+
 
 
 

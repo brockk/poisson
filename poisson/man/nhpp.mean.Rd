@@ -5,7 +5,7 @@
 \usage{nhpp.mean(rate, prob.func, t0 = 0, t1 = 1, num.points = 100, maximum = NULL)}
 \arguments{
   \item{rate}{the rate at which events occur in the Poisson process, aka lambda}
-  \item{prob.func}{function that takes time as sole argument and returns value between 0 and 1  }
+  \item{prob.func}{function that takes time as sole argument and returns value between 0 and 1}
   \item{t0}{start time}
   \item{t1}{end time}
   \item{num.points}{number of points between t0 and t1 to use in estimating mean}

@@ -1,6 +1,5 @@
 \name{nhpp.scenario}
 \alias{nhpp.scenario}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
 }

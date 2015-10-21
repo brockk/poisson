@@ -13,7 +13,7 @@ Note: the rate parameter is often referred to as lambda.}
   \item{prepend.t0}{TRUE: To include t0 at the start of the process, FALSE: Not include to at the start of the process.}
 }
 \value{A numeric vector of length num.events if num.sims=1,
- else, a num.events x num.sims matrix [num.events+1 if prepend.zero=T]}
+ else, a num.events by num.sims matrix [num.events+1 if prepend.zero=T]}
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
 rate <- 10

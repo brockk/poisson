@@ -1,7 +1,6 @@
 \name{nhpp.plot}
 \alias{nhpp.plot}
 \alias{plot.processes}
-\alias{nhhp.sim}
 \alias{nhhp.mean}
 \title{Plot simulated non-homogeneous Poisson processes}
 \description{Plot num.events simulated non-homogeneous Poisson processes, plus
