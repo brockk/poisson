@@ -1,7 +1,9 @@
 \name{nhpp.scenario}
 \alias{nhpp.scenario}
 \title{Simulate a non-homogeneous Poisson process scenario}
-\description{Simulate a non-homogeneous Poisson process scenario, with sample paths, expected value process, and quantile processes.}
+\description{
+Simulate a non-homogeneous Poisson process scenario, with sample paths, expected value process, and quantile processes.
+}
 \usage{
 nhpp.scenario(rate, num.events, prob.func, num.sims = 100, t0 = 0, t1 = NULL, 
               num.points = 100, quantiles = c(0.025, 0.975), ...)
