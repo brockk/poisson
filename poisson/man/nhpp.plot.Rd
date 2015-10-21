@@ -1,7 +1,5 @@
 \name{nhpp.plot}
 \alias{nhpp.plot}
-\alias{plot.processes}
-\alias{nhhp.mean}
 \title{Plot simulated non-homogeneous Poisson processes}
 \description{Plot num.events simulated non-homogeneous Poisson processes, plus
 the mean and quantiles}
@@ -24,6 +22,9 @@ the mean and quantiles}
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
 intensity <- function(t) pmin(t/3, 1)
-nhpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated NHPPs',prob.func=intensity)
+nhpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated NHPPs',
+          prob.func=intensity)
 }
 \keyword{poisson}
+\keyword{NHPP}
+\seealso{\code{\link{nhpp.scenario}}, \code{\link{hpp.plot}}}

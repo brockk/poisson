@@ -23,3 +23,4 @@ nhpp.lik(X, T1 = 2.3, rate = 7, prob.func = intensity)
 \keyword{poisson}
 \keyword{likelihood}
 \keyword{NHPP}
+\seealso{\code{\link{nhpp.mle}}, \code{\link{hpp.lik}}}

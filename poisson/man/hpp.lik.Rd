@@ -20,3 +20,4 @@ hpp.lik(X, T1 = 1, rate = 6)
 \keyword{poisson}
 \keyword{likelihood}
 \keyword{HPP}
+\seealso{\code{\link{hpp.mle}}, \code{\link{nhpp.lik}}}

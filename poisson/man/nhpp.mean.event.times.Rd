@@ -18,3 +18,4 @@ nhpp.mean.event.times(rate, 50, prob.func = intensity)
 }
 \keyword{poisson}
 \keyword{NHPP}
+\seealso{\code{\link{nhpp.event.times}}, \code{\link{nhpp.scenario}}, \code{\link{hpp.mean.event.times}}}

@@ -1,17 +1,19 @@
 \name{show-methods}
 \docType{methods}
 \alias{show-methods}
-\alias{show,PoissonProcessScenario-method}
-\title{ ~~ Methods for Function \code{show}  ~~}
-\description{
- ~~ Methods for function \code{show}  ~~
-}
-\section{Methods}{
-\describe{
+\alias{show, PoissonProcessScenario-method}
+\title{\code{show}}
 
-\item{\code{signature(object = "PoissonProcessScenario")}}{
-%%  ~~describe this method here~~
+\usage{\S4method{show}{PoissonProcessScenario}(x)}
+\arguments{
+  \item{x}{The \code{\linkS4class{PoissonProcessScenario}} object to plot}
 }
-}}
+\description{
+A simulated scenario can be examined with a show.
+}
+\examples{
+scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
+show(scen)
+}
 \keyword{methods}
-\keyword{ ~~ other possible keyword(s) ~~ }
+\keyword{show}

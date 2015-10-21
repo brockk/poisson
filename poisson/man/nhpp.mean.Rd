@@ -19,3 +19,4 @@ nhpp.mean(rate = 20, t1 = 5, maximum = 50, prob.func=intensity)
 }
 \keyword{poisson}
 \keyword{nhhp}
+\seealso{\code{\link{nhpp.scenario}}, \code{\link{hpp.mean}}}

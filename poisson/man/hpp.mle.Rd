@@ -17,3 +17,4 @@ hpp.mle(X, T1=1)
 \keyword{maximum likelihood}
 \keyword{MLE}
 \keyword{HPP}
+\seealso{\code{\link{hpp.lik}}, \code{\link{nhpp.mle}}}

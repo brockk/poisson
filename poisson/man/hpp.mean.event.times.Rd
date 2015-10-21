@@ -15,4 +15,5 @@ hpp.mean.event.times(rate, 50)
 }
 \keyword{poisson}
 \keyword{HPP}
+\seealso{\code{\link{hpp.scenario}}, \code{\link{nhpp.mean.event.times}}}
 

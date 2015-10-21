@@ -1,17 +1,20 @@
 \name{plot-methods}
 \docType{methods}
 \alias{plot-methods}
-\alias{plot,PoissonProcessScenario-method}
-\title{ ~~ Methods for Function \code{plot}  ~~}
+\alias{plot, PoissonProcessScenario-method}
+\title{\code{plot}}
+\usage{\S4method{plot}{PoissonProcessScenario}(x, ...)}
+\arguments{
+  \item{x}{The \code{\linkS4class{PoissonProcessScenario}} object to plot}
+  \item{...}{Additional arguments affecting the plot}
+}
 \description{
- ~~ Methods for function \code{plot}  ~~
+A simulated scenario can be visualised with a plot. Included are process paths, the mean process and quartile processes.
 }
-\section{Methods}{
-\describe{
-
-\item{\code{signature(x = "PoissonProcessScenario")}}{
-%%  ~~describe this method here~~
+\examples{
+scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
+scen@x.bar
+plot(scen, main='My HPP Scenario')
 }
-}}
 \keyword{methods}
-\keyword{ ~~ other possible keyword(s) ~~ }
+\keyword{plot}

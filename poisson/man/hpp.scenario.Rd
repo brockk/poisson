@@ -21,6 +21,10 @@ Simulate an homogeneous Poisson process scenario, with sample paths, expected va
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
 scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
+scen@x.bar
+plot(scen, main='My HPP Scenario')
 }
 \keyword{poisson}
 \keyword{HPP}
+\keyword{simulation}
+\seealso{\code{\link{nhpp.scenario}}, \code{\linkS4class{PoissonProcessScenario}}}

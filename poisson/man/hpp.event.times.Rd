@@ -21,3 +21,4 @@ hpp.event.times(rate, target)
 \keyword{poisson}
 \keyword{HPP}
 \keyword{simulation}
+\seealso{\code{\link{hpp.mean.event.times}}, \code{\link{hpp.scenario}}, \code{\link{nhpp.event.times}}}

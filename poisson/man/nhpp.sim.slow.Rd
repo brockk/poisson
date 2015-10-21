@@ -15,13 +15,16 @@
 \value{a numeric vector of length num.events if num.sims=1 else, a num.events by num.sims matrix}
 \references{Lewis & Shedler, Simulation of Non-Homogeneous Poisson Processes by Thinning, 1978}
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
-\seealso{hpp.sim, nhpp.sim}
+\seealso{\code{\link{hpp.sim}}, \code{\link{nhpp.sim}}}
 \examples{
 intensity <- function(t) pmin(t/3, 1)
-rate<-10
-num.events<-100
+rate <- 10
+num.events <- 100
 nhpp.sim.slow(rate, num.events, prob.func=intensity)
 }
+\note{This item is my original (slower) implementation of NHPP simulation, hence the name.
+It does not use recursion so the code is easier to understand.}
 \keyword{poisson}
 \keyword{nhhp}
-\keyword{sim}
+\keyword{simulation}
+\seealso{\code{\link{nhpp.scenario}}, \code{\link{hpp.sim}}}

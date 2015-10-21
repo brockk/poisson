@@ -25,16 +25,15 @@ X <- nhpp.scenario(rate = 10, num.events = 50, prob.func = intensity)
 plot(X, main='Expect 50 events within 5-8 years')
 
 
-# install.packages('rstudio')
-# require(rstudio)
-install.packages('devtools')
+
+# Test package
+# install.packages('devtools')
 require(devtools)
 find_rtools()
 load_all('poisson')
 
 
-
-#When receiving error: rdFile must be a single element character vector. add .Rd to character string of name to fix
+# When receiving error: rdFile must be a single element character vector. add .Rd to character string of name to fix
 
 # Systematically going through each function / class
 dev_help('hpp.event.times.Rd')
@@ -69,7 +68,7 @@ rate <- 10
 target = 50
 hpp.sim(rate,target)
 
-dev_help('nhpp.event.times')
+dev_help('nhpp.event.times.Rd')
 rate <- 10
 target <- 50
 intensity <- function(t) pmin(t/3, 1)
@@ -88,43 +87,57 @@ intensity <- function(t) pmin(t/3, 1)
 rate <- 10
 nhpp.mean.event.times(rate, 50, prob.func = intensity)
 
-dev_help("nhhp.mean")
+dev_help("nhpp.mean")
 intensity <- function(t) pmin(t/3, 1)
 nhpp.mean(rate = 20, t1 = 5, maximum = 50, prob.func=intensity)
-
-dev_help("nhpp.sim.slow.Rd")
-intensity <- function(t) pmin(t/3, 1)
-rate<-10
-num.events<-100
-nhpp.sim.slow(rate, num.events, prob.func=intensity)
-
-dev_help("nhpp.plot.Rd")
-intensity <- function(t) pmin(t/3, 1)
-nhpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated NHPPs',prob.func=intensity)
-
-dev_help("nhpp.sim.Rd")
-intensity <- function(t) pmin(t/3, 1)
-rate<-10
-num.events<-100
-nhpp.sim(rate, num.events, prob.func=intensity)
 
 dev_help("nhpp.mle")
 intensity <- function(t) pmin(t/3, 1)
 X = c(0.74, 1.50, 1.67, 2.01, 2.27)
 nhpp.mle(X, T1=1, prob.func=intensity, max.val = 70)
 
+dev_help("nhpp.plot.Rd")
+intensity <- function(t) pmin(t/3, 1)
+nhpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated NHPPs',
+          prob.func=intensity)
 
+dev_help("nhpp.scenario")
+intensity <- function(t) pmin(t/3, 1)
+rate <- 10
+num.events <- 100
+scen = nhpp.scenario(rate, num.events, num.sims = 100, prob.func=intensity)
+scen@x.bar
+plot(scen, main='My NHPP Scenario')
 
+dev_help("nhpp.sim.Rd")
+intensity <- function(t) pmin(t/3, 1)
+rate <- 10
+num.events <- 100
+nhpp.sim(rate, num.events, prob.func=intensity)
 
+dev_help("nhpp.sim.slow.Rd")
+intensity <- function(t) pmin(t/3, 1)
+rate <- 10
+num.events <- 100
+nhpp.sim.slow(rate, num.events, prob.func=intensity)
 
+dev_help("plot-methods")
+scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
+scen@x.bar
+plot(scen, main='My HPP Scenario')
 
+dev_help("plot.processes.Rd")
+scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
+plot.processes(scen@x, main='My HPP paths')
 
+dev_help("poisson-package")
+# TODO
 
+dev_help("PoissonProcessScenario-class")
+# TODO
 
-
-
+dev_help("show-methods")
+scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
+show(scen)
 
 load_all('poisson')
-
-
-

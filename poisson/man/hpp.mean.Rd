@@ -17,3 +17,4 @@ hpp.mean(rate = 20, t1 = 5, maximum = 50)
 }
 \keyword{poisson}
 \keyword{HPP}
+\seealso{\code{\link{hpp.scenario}}, \code{\link{nhpp.mean}}}

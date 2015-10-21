@@ -18,10 +18,11 @@
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
 \examples{
 intensity <- function(t) pmin(t/3, 1)
-rate<-10
-num.events<-100
+rate <- 10
+num.events <- 100
 nhpp.sim(rate, num.events, prob.func=intensity)
 }
 \keyword{poisson}
 \keyword{nhhp}
-\keyword{sim}
+\keyword{simulation}
+\seealso{\code{\link{nhpp.scenario}}, \code{\link{hpp.sim}}}

@@ -16,4 +16,7 @@ X = c(0.74, 1.50, 1.67, 2.01, 2.27)
 nhpp.mle(X, T1=1, prob.func=intensity, max.val = 70)
 }
 \keyword{poisson}
-\keyword{mle}
+\keyword{maximum likelihood}
+\keyword{MLE}
+\keyword{NHPP}
+\seealso{\code{\link{nhpp.lik}}, \code{\link{hpp.mle}}}
