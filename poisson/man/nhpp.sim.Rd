@@ -1,6 +1,5 @@
 \name{nhpp.sim}
 \alias{nhpp.sim}
-\alias{nhpp.event.times}
 \title{Simulate non-homogeneous Poisson process(es)}
 \description{Get the n consecutive event times of a non-homogeneous poisson process. Events are simulated using an homogeneous process with rate, and an event at time t is admitted with probability prob.func(t). The rate parameter of an homogeneous process is often called lambda.}
 \usage{nhpp.sim(rate, num.events, prob.func, num.sims = 1, t0 = 0, prepend.t0 = T)}

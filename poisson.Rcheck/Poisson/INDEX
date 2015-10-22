@@ -1,0 +1,35 @@
+PoissonProcessScenario-class
+                        Class '"PoissonProcessScenario"'
+hpp.event.times         Simulate homogeneous Poisson process event
+                        times
+hpp.lik                 Homogeneous Poisson process likelihood
+hpp.mean                Expected value of an homogeneous Poisson
+                        process.
+hpp.mean.event.times    Expected event times of an homogeneous Poisson
+                        process.
+hpp.mle                 Get the maximum-likelihood rate parameter of an
+                        HPP (homogenous Poisson process)
+hpp.plot                Plot simulated homogeneous Poisson processes
+hpp.scenario            Simulate an homogeneous Poisson process
+                        scenario
+hpp.sim                 Simulate homogeneous Poisson process(es).
+nhpp.event.times        Simulate non-homogeneous Poisson process event
+                        times
+nhpp.lik                Non-homogeneous Poisson process likelihood
+nhpp.mean               Expected value of a non-homogeneous Poisson
+                        process.
+nhpp.mean.event.times   Expected event times of a non-homogeneous
+                        Poisson process.
+nhpp.mle                Get the maximum-likelihood rate parameter of an
+                        NHPP (non-homogenous Poisson process)
+nhpp.plot               Plot simulated non-homogeneous Poisson
+                        processes
+nhpp.scenario           Simulate a non-homogeneous Poisson process
+                        scenario
+nhpp.sim                Simulate non-homogeneous Poisson process(es)
+nhpp.sim.slow           Simulate a non-homogeneous Poisson process.
+plot-methods            'plot'
+plot.processes          Plot simulated process paths
+poisson-package         Simulating Homogenous & Non-Homogenous Poisson
+                        Processes
+show-methods            'show'

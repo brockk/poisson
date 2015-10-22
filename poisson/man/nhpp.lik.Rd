@@ -11,7 +11,6 @@
 }
 \value{Returns a numerical value for the likelihood.}
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
-\seealso{}
 \examples{
 intensity <- function(t) pmin(t/3, 1)
 X = c(0.74, 1.50, 1.67, 2.01, 2.27)

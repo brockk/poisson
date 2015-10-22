@@ -7,7 +7,7 @@
   \item{rate}{The rate at which events occur in the Poisson process, aka lambda}
   \item{num.events}{Observe mean event times at this many points}
   \item{prob.func}{aka intensity function, function that takes time as sole argument and returns value between 0 and 1}
-  \item{max.time}{}
+  \item{max.time}{Maximum time value to use}
 }
 \value{A vector of length num.events giving the expected times}
 \author{Kristian Brock - Author, Daniel Slade - Contributor}

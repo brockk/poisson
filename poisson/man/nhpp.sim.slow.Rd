@@ -15,7 +15,6 @@
 \value{a numeric vector of length num.events if num.sims=1 else, a num.events by num.sims matrix}
 \references{Lewis & Shedler, Simulation of Non-Homogeneous Poisson Processes by Thinning, 1978}
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
-\seealso{\code{\link{hpp.sim}}, \code{\link{nhpp.sim}}}
 \examples{
 intensity <- function(t) pmin(t/3, 1)
 rate <- 10

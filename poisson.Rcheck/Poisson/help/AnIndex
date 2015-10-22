@@ -1,0 +1,27 @@
+poisson-package	poisson-package
+hpp.event.times	hpp.event.times
+hpp.lik	hpp.lik
+hpp.mean	hpp.mean
+hpp.mean.event.times	hpp.mean.event.times
+hpp.mle	hpp.mle
+hpp.plot	hpp.plot
+hpp.scenario	hpp.scenario
+hpp.sim	hpp.sim
+nhpp.event.times	nhpp.event.times
+nhpp.lik	nhpp.lik
+nhpp.mean	nhpp.mean
+nhpp.mean.event.times	nhpp.mean.event.times
+nhpp.mle	nhpp.mle
+nhpp.plot	nhpp.plot
+nhpp.scenario	nhpp.scenario
+nhpp.sim	nhpp.sim
+nhpp.sim.slow	nhpp.sim.slow
+plot, PoissonProcessScenario-method	plot-methods
+plot,PoissonProcessScenario-method	PoissonProcessScenario-class
+plot-methods	plot-methods
+plot.processes	plot.processes
+poisson	poisson-package
+PoissonProcessScenario-class	PoissonProcessScenario-class
+show, PoissonProcessScenario-method	show-methods
+show,PoissonProcessScenario-method	PoissonProcessScenario-class
+show-methods	show-methods

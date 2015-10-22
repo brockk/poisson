@@ -10,7 +10,6 @@ plot.processes(x, y = NULL, xlab = "t (years)", ylab = "N", type = "l", lty = 2,
   \item{...}{Additional arguments affecting the plot}
 }
 \author{Kristian Brock - Author, Daniel Slade - Contributor}
-\seealso{}
 \examples{
 scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
 plot.processes(scen@x, main='My HPP paths')

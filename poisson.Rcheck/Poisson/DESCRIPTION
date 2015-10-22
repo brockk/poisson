@@ -8,4 +8,4 @@ Maintainer: Daniel Slade <sladeD@bham.ac.uk>
 Depends: methods
 Description: This package contains a functions and classes for simulating, plotting and analysing homogenous and non-homogenous Poisson processes.
 License: GPL-2
-
+Built: R 3.2.2; ; 2015-10-22 12:31:19 UTC; windows
