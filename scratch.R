@@ -131,10 +131,10 @@ scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
 plot.processes(scen@x, main='My HPP paths')
 
 dev_help("poisson-package")
-# TODO
+# no demo code.
 
 dev_help("PoissonProcessScenario-class")
-# TODO
+# no demo code, it's in hpp.scenario and nhpp.scenario
 
 dev_help("show-methods")
 scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)

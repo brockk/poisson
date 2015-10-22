@@ -4,21 +4,19 @@
 \alias{PoissonProcessScenario-class}
 \alias{plot,PoissonProcessScenario-method}
 \alias{show,PoissonProcessScenario-method}
-
 \title{Class \code{"PoissonProcessScenario"}}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the class is. ~~
+This class is the result of a Poisson process simulation scenario, yielded by methods like \code{\link{hpp.scenario}} and \code{\link{nhpp.scenario}}. The object has slots for the simulated random processes, the mean process, and quantile processes. It has specific implementations of plot and show.
 }
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("PoissonProcessScenario", ...)}.
-%%  ~~ describe objects here ~~ 
+Objects can be created by calls of the form \code{new("PoissonProcessScenario", ...)}, although they would more commonly be fetched from calls to \code{\link{hpp.scenario}} and \code{\link{nhpp.scenario}}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{x}:}{Object of class \code{"matrix"} ~~ }
-    \item{\code{x.bar}:}{Object of class \code{"numeric"} ~~ }
-    \item{\code{x.bar.index}:}{Object of class \code{"numeric"} ~~ }
-    \item{\code{x.q}:}{Object of class \code{"matrix"} ~~ }
+    \item{\code{x}:}{Object of class \code{"matrix"}, the simulated process paths}
+    \item{\code{x.bar}:}{Object of class \code{"numeric"}, the mean process}
+    \item{\code{x.bar.index}:}{Object of class \code{"numeric"}, the time variable of the mean process}
+    \item{\code{x.q}:}{Object of class \code{"matrix"}, the quantile processes.}
   }
 }
 \section{Methods}{
@@ -27,23 +25,10 @@ Objects can be created by calls of the form \code{new("PoissonProcessScenario", 
     \item{show}{\code{signature(object = "PoissonProcessScenario")}: ... }
 	 }
 }
-\references{
-%%  ~~put references to the literature/web site here~~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%%  ~~objects to See Also as \code{\link{~~fun~~}}, ~~~
-%%  ~~or \code{\linkS4class{CLASSNAME}} for links to other classes ~~~
-}
-\examples{
-showClass("PoissonProcessScenario")
-}
+\author{Kristian Brock - Author, Daniel Slade - Contributor}
+\seealso{\code{\link{hpp.scenario}}, \code{\link{nhpp.scenario}}}
 \keyword{classes}
+\keyword{poisson}
+\keyword{HPP}
+\keyword{NHPP}
+
