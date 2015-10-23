@@ -6,6 +6,6 @@ Date: 2015-10-01
 Author: Kristian Brock [aut] <kristian.brock@gmail.com>, Daniel Slade [ctb]
 Maintainer: Daniel Slade <sladeD@bham.ac.uk>
 Depends: methods
-Description: This package contains a functions and classes for simulating, plotting and analysing homogenous and non-homogenous Poisson processes.
+Description: This package contains functions and classes for simulating, plotting and analysing homogenous and non-homogenous Poisson processes.
 License: GPL-2
 

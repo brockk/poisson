@@ -1,6 +1,7 @@
 
 # source("poisson.r")
 library(poisson)
+help(poisson)
 search()
 target = 50
 t0 <- 0  # Start time
