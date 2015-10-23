@@ -1,12 +1,11 @@
 \name{show-methods}
 \docType{methods}
 \alias{show-methods}
-\alias{show, PoissonProcessScenario-method}
+\alias{show,PoissonProcessScenario-method}
 \title{\code{show}}
-
-\usage{\S4method{show}{PoissonProcessScenario}(x)}
+\usage{\S4method{show}{PoissonProcessScenario}(object)}
 \arguments{
-  \item{x}{The \code{\linkS4class{PoissonProcessScenario}} object to plot}
+  \item{object}{The \code{\linkS4class{PoissonProcessScenario}} object to show}
 }
 \description{
 A simulated scenario can be examined with a show.

@@ -1,11 +1,11 @@
-* installing *source* package 'Poisson' ...
+* installing *source* package 'poisson' ...
 ** R
 ** preparing package for lazy loading
-Creating a generic function for 'plot' from package 'graphics' in package 'Poisson'
+Creating a generic function for 'plot' from package 'graphics' in package 'poisson'
 ** help
 *** installing help indices
 ** building package indices
 ** testing if installed package can be loaded
 *** arch - i386
 *** arch - x64
-* DONE (Poisson)
+* DONE (poisson)

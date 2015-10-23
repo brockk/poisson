@@ -1,11 +1,13 @@
 \name{plot-methods}
 \docType{methods}
 \alias{plot-methods}
-\alias{plot, PoissonProcessScenario-method}
+\alias{plot,PoissonProcessScenario-method}
 \title{\code{plot}}
-\usage{\S4method{plot}{PoissonProcessScenario}(x, ...)}
+\usage{\S4method{plot}{PoissonProcessScenario}(x, plot.mean, plot.quantiles, ...)}
 \arguments{
   \item{x}{The \code{\linkS4class{PoissonProcessScenario}} object to plot}
+  \item{plot.mean}{TRUE to plot the mean process}
+  \item{plot.quantiles}{TRUE to plot the quantile processes}
   \item{...}{Additional arguments affecting the plot}
 }
 \description{

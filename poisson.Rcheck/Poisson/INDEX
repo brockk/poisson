@@ -29,7 +29,7 @@ nhpp.scenario           Simulate a non-homogeneous Poisson process
 nhpp.sim                Simulate non-homogeneous Poisson process(es)
 nhpp.sim.slow           Simulate a non-homogeneous Poisson process.
 plot-methods            'plot'
-plot.processes          Plot simulated process paths
+plotprocesses           Plot simulated process paths
 poisson-package         Simulating Homogenous & Non-Homogenous Poisson
                         Processes
 show-methods            'show'

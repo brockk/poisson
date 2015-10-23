@@ -17,11 +17,11 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> pkgname <- "Poisson"
+> pkgname <- "poisson"
 > source(file.path(R.home("share"), "R", "examples-header.R"))
 > options(warn = 1)
 > options(pager = "console")
-> library('Poisson')
+> library('poisson')
 > 
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 > cleanEx()
@@ -1242,7 +1242,7 @@ $x.q
 > 
 > ### Name: plot-methods
 > ### Title: 'plot'
-> ### Aliases: plot-methods 'plot, PoissonProcessScenario-method'
+> ### Aliases: plot-methods plot,PoissonProcessScenario-method
 > ### Keywords: methods plot
 > 
 > ### ** Examples
@@ -1271,20 +1271,20 @@ $x.q
 > 
 > 
 > cleanEx()
-> nameEx("plot.processes")
-> ### * plot.processes
+> nameEx("plotprocesses")
+> ### * plotprocesses
 > 
 > flush(stderr()); flush(stdout())
 > 
-> ### Name: plot.processes
+> ### Name: plotprocesses
 > ### Title: Plot simulated process paths
-> ### Aliases: plot.processes
+> ### Aliases: plotprocesses
 > ### Keywords: poisson
 > 
 > ### ** Examples
 > 
 > scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
-> plot.processes(scen@x, main='My HPP paths')
+> plotprocesses(scen@x, main='My HPP paths')
 > 
 > 
 > 
@@ -1296,7 +1296,7 @@ $x.q
 > 
 > ### Name: show-methods
 > ### Title: 'show'
-> ### Aliases: show-methods 'show, PoissonProcessScenario-method'
+> ### Aliases: show-methods show,PoissonProcessScenario-method
 > ### Keywords: methods show
 > 
 > ### ** Examples
@@ -1312,7 +1312,7 @@ $x.q
 > ###
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.49 0.67 3.51 NA NA 
+Time elapsed:  0.44 1.06 3.73 NA NA 
 > grDevices::dev.off()
 null device 
           1 

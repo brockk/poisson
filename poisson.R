@@ -103,13 +103,13 @@ hpp.plot <- function(rate, num.events, num.sims=100, t0=0, t1=NULL,
   x = hpp.sim(rate, num.events, num.sims)
   if(is.null(t1))
     t1 = 1.1*max(x)
-  plot.processes(x, xlim=c(t0, t1), ...)
+  plotprocesses(x, xlim=c(t0, t1), ...)
   # Expected value process
   x.bar = hpp.mean(rate, t0, t1, num.points, maximum=num.events)
   lines(seq(t0, t1, length.out=num.points), x.bar, col='darkorange1', lwd=2)
   # Quantile processes
   x.q = t(apply(x, 1, function(x) quantile(x, probs=quantiles)))
-  plot.processes(x.q, col='red', lwd=2, lty=3, add=T)
+  plotprocesses(x.q, col='red', lwd=2, lty=3, add=T)
   return(list(x=x, x.bar=x.bar, x.q=x.q))
 }
 
@@ -311,13 +311,13 @@ nhpp.plot <- function(rate, num.events, prob.func, num.sims=100,
   x = nhpp.sim(rate, num.events, prob.func, num.sims)
   if(is.null(t1))
     t1 = 1.1*max(x)
-  plot.processes(x, xlim=c(t0, t1), ...)
+  plotprocesses(x, xlim=c(t0, t1), ...)
   # Expected value process
   x.bar = nhpp.mean(rate, prob.func, t0, t1, num.points, maximum=num.events)
   lines(seq(t0, t1, length.out=num.points), x.bar, col='darkorange1', lwd=2)
   # Quantile processes
   x.q = t(apply(x, 1, function(x) quantile(x, probs=quantiles)))
-  plot.processes(x.q, col='red', lwd=2, lty=3, add=T)
+  plotprocesses(x.q, col='red', lwd=2, lty=3, add=T)
   return(list(x=x, x.bar=x.bar, x.q=x.q))
 }
 
@@ -350,7 +350,7 @@ nhpp.mle <- function(x, T1, prob.func, max.val) {
 
 
 # Plotting
-plot.processes = function(x, y=NULL, xlab='t (years)', ylab='N', type='l', lty=2, col='cadetblue3', xlim=c(0, 1.1*max(x)), 
+plotprocesses = function(x, y=NULL, xlab='t (years)', ylab='N', type='l', lty=2, col='cadetblue3', xlim=c(0, 1.1*max(x)), 
                           lwd=0.5, add=F, ...) {
   # TODO: explain
   if(is.null(y))
@@ -368,13 +368,13 @@ setClass("PoissonProcessScenario",
 setMethod("plot" , "PoissonProcessScenario",
           function(x, plot.mean=T, plot.quantiles=T, ...) {
             # Plot simulated processes
-            plot.processes(x@x, ...)
+            plotprocesses(x@x, ...)
             # Plot mean process
             if(plot.mean)
               lines(x@x.bar.index, x@x.bar, col='darkorange1', lwd=2)
             # Plot quantile processes
             if(plot.quantiles)
-              plot.processes(x@x.q, col='red', lwd=2, lty=3, add=T)
+              plotprocesses(x@x.q, col='red', lwd=2, lty=3, add=T)
           }
 )
 setMethod ("show", "PoissonProcessScenario",

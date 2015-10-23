@@ -1,17 +1,15 @@
-require(rmarkdown)
-install.packages('rmarkdown')
 
-source("poisson.r")
+# source("poisson.r")
+library(poisson)
+search()
 target = 50
 t0 <- 0  # Start time
 t1 <- 6  # End time
-
 set.seed(123)
-
 rate <- 10
 x <- hpp.sim(rate, target)
 plot(x, 0:target, main='A sample recruitment path', xlab='t', ylab='N', type='b')
-
+help("nhpp.scenario")
 
 
 # Demo for Dan
@@ -27,8 +25,10 @@ plot(X, main='Expect 50 events within 5-8 years')
 
 
 # Test package
-# install.packages('devtools')
+install.packages('devtools')
+install.packages('roxygen2')
 require(devtools)
+require(roxygen2)
 find_rtools()
 load_all('poisson')
 
@@ -62,6 +62,7 @@ hpp.plot(rate = 5, num.events = 20, num.sims = 100, main='My simulated HPPs')
 
 dev_help('hpp.scenario')
 scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
+plot(scen)
 
 dev_help('hpp.sim.Rd')
 rate <- 10
@@ -126,9 +127,9 @@ scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
 scen@x.bar
 plot(scen, main='My HPP Scenario')
 
-dev_help("plot.processes.Rd")
+dev_help("plotprocesses.Rd")
 scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
-plot.processes(scen@x, main='My HPP paths')
+plotprocesses(scen@x, main='My HPP paths')
 
 dev_help("poisson-package")
 # no demo code.
@@ -141,3 +142,10 @@ scen = hpp.scenario(rate = 5, num.events = 20, num.sims = 100)
 show(scen)
 
 load_all('poisson')
+
+
+
+# Check
+check_doc('poisson/man/hpp.lik')
+check_doc('poisson/man/plotprocesses')
+check('poisson')

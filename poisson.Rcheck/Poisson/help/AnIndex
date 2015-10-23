@@ -16,12 +16,10 @@ nhpp.plot	nhpp.plot
 nhpp.scenario	nhpp.scenario
 nhpp.sim	nhpp.sim
 nhpp.sim.slow	nhpp.sim.slow
-plot, PoissonProcessScenario-method	plot-methods
-plot,PoissonProcessScenario-method	PoissonProcessScenario-class
+plot,PoissonProcessScenario-method	plot-methods
 plot-methods	plot-methods
-plot.processes	plot.processes
+plotprocesses	plotprocesses
 poisson	poisson-package
 PoissonProcessScenario-class	PoissonProcessScenario-class
-show, PoissonProcessScenario-method	show-methods
-show,PoissonProcessScenario-method	PoissonProcessScenario-class
+show,PoissonProcessScenario-method	show-methods
 show-methods	show-methods

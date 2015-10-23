@@ -2,8 +2,6 @@
 \Rdversion{1.1}
 \docType{class}
 \alias{PoissonProcessScenario-class}
-\alias{plot,PoissonProcessScenario-method}
-\alias{show,PoissonProcessScenario-method}
 \title{Class \code{"PoissonProcessScenario"}}
 \description{
 This class is the result of a Poisson process simulation scenario, yielded by methods like \code{\link{hpp.scenario}} and \code{\link{nhpp.scenario}}. The object has slots for the simulated random processes, the mean process, and quantile processes. It has specific implementations of plot and show.

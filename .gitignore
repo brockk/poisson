@@ -1,3 +1,6 @@
+.Rproj.user
+.RData
+
 # History files
 .Rhistory
 .Rapp.history
@@ -11,4 +14,3 @@
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
-.Rproj.user
