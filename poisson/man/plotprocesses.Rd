@@ -2,8 +2,9 @@
 \alias{plotprocesses}
 \title{Plot simulated process paths}
 \description{Plot a matrix of simulated process paths}
-\usage{plotprocesses(x, y = NULL, xlab = "t (years)", ylab = "N", type = "l", lty = 2, col = "cadetblue3", 
-                xlim = c(0, 1.1 * max(x)), lwd = 0.5, add = F, ...)}
+\usage{plotprocesses(x, y = NULL, xlab = "t (years)", ylab = "N", type = "l", 
+                      lty = 2, col = "cadetblue3", xlim = c(0, 1.1 * max(x)), 
+                      lwd = 0.5, add = F, ...)}
 \arguments{
   \item{x}{matrix of process paths}
   \item{y}{variable for y axis, index of x if NULL}
