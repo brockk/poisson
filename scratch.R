@@ -10,6 +10,7 @@ set.seed(123)
 rate <- 10
 x <- hpp.sim(rate, target)
 plot(x, 0:target, main='A sample recruitment path', xlab='t', ylab='N', type='b')
+help("plotprocesses")
 help("nhpp.scenario")
 
 
