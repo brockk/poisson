@@ -25,6 +25,34 @@ X <- nhpp.scenario(rate = 10, num.events = 50, prob.func = intensity)
 plot(X, main='Expect 50 events within 5-8 years')
 
 
+# Fixing bugs
+getwd()
+require(devtools)
+load_all('poisson')
+
+
+# Test y0 and process.start.time in hpp.mean and nhpp.mean
+dumb.intensity = function(t) 0.5*(sin((t-0.5)*pi) + 1)
+curve(dumb.intensity, from=0, to=4)
+plot(hpp.mean(rate = 10, t1 = 1), typ='l', ylab='N')
+plot(hpp.mean(rate = 10, t1 = 1, y0=10), typ='l', ylab='N')
+plot(hpp.mean(rate = 10, t1 = 1, process.start.time = 0.5), typ='l', ylab='N')
+plot(hpp.mean(rate = 10, t1 = 1, process.start.time = 0.5, y0=10), typ='l', ylab='N')
+plot(nhpp.mean(rate = 10, prob.func = dumb.intensity, t1 = 1), typ='l', ylab='N')
+plot(nhpp.mean(rate = 10, prob.func = dumb.intensity, t1 = 1, y0=10), typ='l', ylab='N')
+plot(nhpp.mean(rate = 10, prob.func = dumb.intensity, t1 = 1, process.start.time = 0.5), typ='l', ylab='N')
+plot(nhpp.mean(rate = 10, prob.func = dumb.intensity, t1 = 1, process.start.time = 0.5, y0=10), 
+     typ='l', ylab='N')
+# and in nhpp.scenario
+abcd = nhpp.scenario(rate=10, num.events=50, prob.func=dumb.intensity, t0=0)
+plot(abcd)
+abcd = nhpp.scenario(rate=10, num.events=50, prob.func=dumb.intensity, t0=0, y0=10)
+plot(abcd)
+abcd = nhpp.scenario(rate=10, num.events=50, prob.func=dumb.intensity, t0=4, y0=10)
+plot(abcd)
+
+
+
 
 # Test package
 install.packages('devtools')
@@ -151,3 +179,5 @@ load_all('poisson')
 check_doc('poisson/man/hpp.lik')
 check_doc('poisson/man/plotprocesses')
 check('poisson')
+
+

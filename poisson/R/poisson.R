@@ -58,22 +58,24 @@ hpp.sim <- function(rate, num.events, num.sims=1, t0=0, prepend.t0=T) {
   }
 }
 
-hpp.mean <- function(rate, t0=0, t1=1, num.points=100, maximum=NULL) {
+hpp.mean <- function(rate, t0=0, t1=1, num.points=100, y0=0, maximum=NULL, process.start.time=0) {
   # Calculate the expected value of an homogeneous Poisson process at points in time.
   #
   # Params
   #   :rate: the rate at which events occur in the Poisson process, aka lambda
-  #   :t0: start time
-  #   :t1: end time
+  #   :t0: Calculate mean from this time
+  #   :t1: Calculate mean to this time
   #   :num.points: number of points between t0 and t1 to use in estimating mean
+  #   :y0: The start value of the Poisson processes.
   #   :maximum: the optional maximum value that the process should take
+  #   :process.start.time: time at which the process was equal to zero. Default is 0.
   
   times = seq(t0, t1, length.out=num.points)
-  x = rate*times
+  y = rate * pmax(times - process.start.time, 0)
   if(is.null(maximum))
-    return(x)
+    return(y0+y)
   else
-    return(pmin(x, maximum))
+    return(y0 + pmin(y, maximum))
 }
 
 hpp.mean.event.times <- function(rate, num.events) {
@@ -86,33 +88,35 @@ hpp.mean.event.times <- function(rate, num.events) {
   return(seq(from=1/rate, length.out=num.events, by=1/rate))
 }
 
-hpp.plot <- function(rate, num.events, num.sims=100, t0=0, t1=NULL, 
-                     num.points=100, quantiles=c(0.025, 0.975), ...) {
-  # Plot num.events simulated homogeneous Poisson processes, plus
-  # the mean and quantiles
+hpp.scenario <- function(rate, num.events, num.sims=100, t0=0, t1=NULL, num.points=100, 
+                         y0=0, quantiles=c(0.025, 0.975), ...) {
+  # Simulate an homogeneous Poisson process scenario, with sample paths, 
+  # expected value process, and quantile processes.
   #
   # Params
   #   :rate: the rate at which events occur in the Poisson process, aka lambda
   #   :num.events: number of event times to simulate in each process
   #   :num.sims: number of simulated paths to plot
-  #   :t0: plot start time
-  #   :t1: plot end time
-  #   :num.points: number of points to use in estimating mean and quantile processes
-  #   :quantiles: plot these quantile processes
+  #   :t0: start time of processes
+  #   :t1: end time of mean process, inferred automiatically when NULL (default)
+  #   :num.points: number of points to use in estimating mean process
+  #   :y0: The start value of the Poisson processes.
+  #   :quantiles: calculate these quantile processes
   
-  x = hpp.sim(rate, num.events, num.sims)
+  # Simulated processes
+  x = hpp.sim(rate, num.events, num.sims, t0=t0, ...)
   if(is.null(t1))
     t1 = 1.1*max(x)
-  plotprocesses(x, xlim=c(t0, t1), ...)
   # Expected value process
-  x.bar = hpp.mean(rate, t0, t1, num.points, maximum=num.events)
-  lines(seq(t0, t1, length.out=num.points), x.bar, col='darkorange1', lwd=2)
+  y.bar = hpp.mean(rate, t0=t0, t1=t1, num.points=num.points, y0=y0, maximum=num.events, 
+                   process.start.time = t0)
   # Quantile processes
   x.q = t(apply(x, 1, function(x) quantile(x, probs=quantiles)))
-  plotprocesses(x.q, col='red', lwd=2, lty=3, add=T)
-  return(list(x=x, x.bar=x.bar, x.q=x.q))
+  return(
+    new("PoissonProcessScenario", x=x, y.bar=y.bar, 
+        y.bar.index=seq(t0, t1, length.out=num.points), x.q=x.q, y0=y0)
+  )
 }
-
 
 nhpp.event.times <- function(rate, num.events, prob.func, num.sims=1, t0=0) {
   # Simulate non-homogeneous Poisson process event times.
@@ -249,8 +253,8 @@ nhpp.sim.slow <- function(rate, num.events, prob.func, num.sims=1, t0=0, prepend
   }
 }
 
-nhpp.mean <- function(rate, prob.func, t0=0, t1=1, num.points=100, 
-                      maximum=NULL) {
+nhpp.mean <- function(rate, prob.func, t0=0, t1=1, num.points=100, y0=0, maximum=NULL,
+                      process.start.time=0) {
   # Calculate the expected value of a non-homogeneous Poisson process at points in time.
   #
   # Params
@@ -263,11 +267,12 @@ nhpp.mean <- function(rate, prob.func, t0=0, t1=1, num.points=100,
   
   f <- function(x) rate * prob.func(x)
   times = seq(t0, t1, length.out=num.points)
-  y = sapply(times, function(x) integrate(f, lower=0, upper=x)$value)
+#   y = sapply(pmax(times - process.start.time, 0), function(x) integrate(f, lower=0, upper=x)$value)
+  y = sapply(times, function(x) integrate(f, lower=t0, upper=x)$value)
   if(is.null(maximum))
-    return(y)
+    return(y0+y)
   else
-    return(pmin(y, maximum))
+    return(y0 + pmin(y, maximum))
 }
 
 nhpp.mean.event.times <- function(rate, num.events, prob.func, max.time=1000) {
@@ -293,6 +298,125 @@ nhpp.mean.event.times <- function(rate, num.events, prob.func, max.time=1000) {
   return(times)
 }
 
+nhpp.scenario <- function(rate, num.events, prob.func, num.sims=100, t0=0, t1=NULL, 
+                          num.points=100, y0=0, quantiles=c(0.025, 0.975), ...) {
+  # Simulate a non-homogeneous Poisson process scenario, with sample paths, 
+  # expected value process, and quantile processes.
+  #
+  # Params
+  #   :rate: the rate at which events occur in the Poisson process, aka lambda
+  #   :num.events: number of event times to simulate in each process
+  #   :num.sims: number of simulated paths to plot
+  #   :t0: start time of processes
+  #   :t1: end time of mean process, inferred automiatically when NULL (default)
+  #   :num.points: number of points to use in estimating mean process
+  #   :y0: The start value of the Poisson processes.
+  #   :quantiles: calculate these quantile processes
+  
+  # Simulated processes
+  x = nhpp.sim(rate, num.events, prob.func, num.sims=num.sims, t0=t0, ...)
+  if(is.null(t1))
+    t1 = 1.1*max(x)
+  # Expected value process
+  y.bar = nhpp.mean(rate, prob.func, t0=t0, t1=t1, num.points=num.points, y0=y0, maximum=num.events,
+                    process.start.time = t0)
+  # Quantile processes
+  x.q = t(apply(x, 1, function(x) quantile(x, probs=quantiles)))
+  return(
+    new("PoissonProcessScenario", x=x, y.bar=y.bar, 
+        y.bar.index=seq(t0, t1, length.out=num.points), x.q=x.q, y0=y0)
+  )
+}
+
+
+
+
+# Inference
+hpp.lik <- function(x, T1, rate) {
+  # Get the likelihood of a rate parameter at a specific time for observed HPP event times.
+  # Params
+  #   :x: a vector of HPP event times
+  #   :T1: Calculate likelihood at this time
+  #   :rate: the putative HPP event rate
+  return(nhpp.lik(x, T1, rate, prob.func=function(x) rep(1, length(x))))
+}
+
+nhpp.lik <- function(x, T1, rate, prob.func) {
+  # Get the likelihood of a rate parameter at a specific time 
+  # for observed NHPP event times and given intensity function.
+  # Params
+  #   :x: a vector of HPP event times
+  #   :T1: Calculate likelihood at this time
+  #   :rate: the putative HPP event rate
+  #   :prob.func: aka intensity function, function that takes time as sole argument 
+  #               and returns value between 0 and 1
+  lambda.func = function(x) rate * prob.func(x)
+  expectation = integrate(lambda.func, lower=0, upper=T1)$value
+  return(sum(log(lambda.func(x))) - expectation)
+}
+
+hpp.mle <- function(x, T1) {
+  # Get the maximum-likelihood rate parameter for given HPP event times.
+  # Params
+  #   :x: a vector of HPP event times
+  #   :T1: Calculate MLE at this time
+  return(length(x) / T1)
+}
+
+nhpp.mle <- function(x, T1, prob.func, max.val) {
+  # Get the maximum-likelihood rate parameter for given NHPP event times.
+  # Params
+  #   :x: a vector of HPP event times
+  #   :T1: Calculate MLE at this time
+  #   :prob.func: aka intensity function, function that takes time as sole argument 
+  #               and returns value between 0 and 1  
+  #   :max.val: maximum value to consider for MLE of NHPP rate parameter
+  opt.f = function(z) nhpp.lik(x, T1, rate=z, prob.func=prob.func)
+  return(optimize(opt.f, interval=c(0, max.val), maximum=T)$maximum)
+}
+
+
+
+# Plotting
+plotprocesses = function(x, y=NULL, xlab='t (years)', ylab='N', type='l', lty=2, col='cadetblue3', 
+                         xlim=c(0, 1.1*max(x)), lwd=0.5, add=F, ...) {
+  if(is.null(y))
+    y = 0:(dim(x)[1]-1)
+  matplot(x, y, xlab=xlab, ylab=ylab, type=type, lty=lty, col=col, xlim=xlim, lwd=lwd, add=add, ...)
+}
+
+
+
+# Deprecated
+hpp.plot <- function(rate, num.events, num.sims=100, t0=0, t1=NULL, 
+                     num.points=100, quantiles=c(0.025, 0.975), ...) {
+  # Plot num.events simulated homogeneous Poisson processes, plus
+  # the mean and quantiles
+  #
+  # Params
+  #   :rate: the rate at which events occur in the Poisson process, aka lambda
+  #   :num.events: number of event times to simulate in each process
+  #   :num.sims: number of simulated paths to plot
+  #   :t0: plot start time
+  #   :t1: plot end time
+  #   :num.points: number of points to use in estimating mean and quantile processes
+  #   :quantiles: plot these quantile processes
+  
+  warning("This method is deprecated. Use 'x <- hpp.scenario(...); plot(x)' ")
+  
+  x = hpp.sim(rate, num.events, num.sims)
+  if(is.null(t1))
+    t1 = 1.1*max(x)
+  plotprocesses(x, xlim=c(t0, t1), ...)
+  # Expected value process
+  x.bar = hpp.mean(rate, t0, t1, num.points, maximum=num.events)
+  lines(seq(t0, t1, length.out=num.points), x.bar, col='darkorange1', lwd=2)
+  # Quantile processes
+  x.q = t(apply(x, 1, function(x) quantile(x, probs=quantiles)))
+  plotprocesses(x.q, col='red', lwd=2, lty=3, add=T)
+  return(list(x=x, x.bar=x.bar, x.q=x.q))
+}
+
 nhpp.plot <- function(rate, num.events, prob.func, num.sims=100,
                               t0=0, t1=NULL, num.points=100, 
                               quantiles=c(0.025, 0.975), ...) {
@@ -307,6 +431,8 @@ nhpp.plot <- function(rate, num.events, prob.func, num.sims=100,
   #   :t1: plot end time
   #   :num.points: number of points to use in estimating mean and quantile processes
   #   :quantiles: plot these quantile processes
+  
+  warning("This method is deprecated. Use 'x <- nhpp.scenario(...); plot(x)' ")
   
   x = nhpp.sim(rate, num.events, prob.func, num.sims)
   if(is.null(t1))
@@ -323,126 +449,31 @@ nhpp.plot <- function(rate, num.events, prob.func, num.sims=100,
 
 
 
-# Inference
-nhpp.lik <- function(x, T1, rate, prob.func) {
-  # TODO: explain
-  lambda.func = function(x) rate * prob.func(x)
-  expectation = integrate(lambda.func, lower=0, upper=T1)$value
-  return(sum(log(lambda.func(x))) - expectation)
-}
-
-hpp.lik <- function(x, T1, rate) {
-  # Get the likelihood of a rate parameter at a specific time for observed HPP event times.
-  # Params
-  #   :x: a vector of HPP event times
-  #   :T1: Calculate likelihood at this time
-  #   :rate: the putative HPP event rate
-  return(nhpp.lik(x, T1, rate, prob.func=function(x) rep(1, length(x))))
-}
-
-hpp.mle <- function(x, T1) {
-  # Get the maximum-likelihood rate parameter for given HPP event times.
-  # Params
-  #   :x: a vector of HPP event times
-  #   :T1: Calculate MLE at this time
-  return(length(x) / T1)
-}
-
-nhpp.mle <- function(x, T1, prob.func, max.val) {
-  # TODO: explain
-  opt.f = function(z) nhpp.lik(x, T1, rate=z, prob.func=prob.func)
-  return(optimize(opt.f, interval=c(0, max.val), maximum=T)$maximum)
-}
-
-
-
-# Plotting
-plotprocesses = function(x, y=NULL, xlab='t (years)', ylab='N', type='l', lty=2, col='cadetblue3', xlim=c(0, 1.1*max(x)), 
-                          lwd=0.5, add=F, ...) {
-  # TODO: explain
-  if(is.null(y))
-    y = 0:(dim(x)[1]-1)
-  matplot(x, y, xlab=xlab, ylab=ylab, type=type, lty=lty, col=col, xlim=xlim, lwd=lwd, add=add, ...)
-}
-
-
 # Object-oriented approach
 setClass("PoissonProcessScenario",
-         representation(x="matrix", x.bar="numeric", x.bar.index="numeric", x.q="matrix"),
-         prototype(x=matrix(), x.bar=numeric(), x.bar.index=numeric(), x.q=matrix())
+         representation(x="matrix", y.bar="numeric", y.bar.index="numeric", x.q="matrix", 
+                        y0="numeric"),
+         prototype(x=matrix(), y.bar=numeric(), y.bar.index=numeric(), x.q=matrix(), y0=numeric())
 )
 
 setMethod("plot" , "PoissonProcessScenario",
           function(x, plot.mean=T, plot.quantiles=T, ...) {
+            n = nrow(x@x)
+            y = x@y0 + 0:(n-1)
             # Plot simulated processes
-            plotprocesses(x@x, ...)
+            plotprocesses(x@x, y, ...)
             # Plot mean process
             if(plot.mean)
-              lines(x@x.bar.index, x@x.bar, col='darkorange1', lwd=2)
+              lines(x@y.bar.index, x@y.bar, col='darkorange1', lwd=2)
             # Plot quantile processes
             if(plot.quantiles)
-              plotprocesses(x@x.q, col='red', lwd=2, lty=3, add=T)
+              plotprocesses(x@x.q, y, col='red', lwd=2, lty=3, add=T)
           }
 )
+
 setMethod ("show", "PoissonProcessScenario",
            function(object) {
              cat(dim(object@x), "\n")
              cat("\n")
            }
 )
-hpp.scenario <- function(rate, num.events, num.sims=100, t0=0, t1=NULL, 
-                         num.points=100, quantiles=c(0.025, 0.975), ...) {
-  # Simulate an homogeneous Poisson process scenario, with sample paths, 
-  # expected value process, and quantile processes.
-  #
-  # Params
-  #   :rate: the rate at which events occur in the Poisson process, aka lambda
-  #   :num.events: number of event times to simulate in each process
-  #   :num.sims: number of simulated paths to plot
-  #   :t0: start time of processes
-  #   :t1: end time of mean process, inferred automiatically when NULL (default)
-  #   :num.points: number of points to use in estimating mean process
-  #   :quantiles: calculate these quantile processes
-  
-  # Simulated processes
-  x = hpp.sim(rate, num.events, num.sims, t0=t0, ...)
-  if(is.null(t1))
-    t1 = 1.1*max(x)
-  # Expected value process
-  x.bar = hpp.mean(rate, t0=t0, t1=t1, num.points=num.points, maximum=num.events)
-  # Quantile processes
-  x.q = t(apply(x, 1, function(x) quantile(x, probs=quantiles)))
-  return(
-    new("PoissonProcessScenario", x=x, x.bar=x.bar, 
-        x.bar.index=seq(t0, t1, length.out=num.points), x.q=x.q)
-  )
-}
-
-nhpp.scenario <- function(rate, num.events, prob.func, num.sims=100, t0=0, t1=NULL, 
-                         num.points=100, quantiles=c(0.025, 0.975), ...) {
-  # Simulate a non-homogeneous Poisson process scenario, with sample paths, 
-  # expected value process, and quantile processes.
-  #
-  # Params
-  #   :rate: the rate at which events occur in the Poisson process, aka lambda
-  #   :num.events: number of event times to simulate in each process
-  #   :num.sims: number of simulated paths to plot
-  #   :t0: start time of processes
-  #   :t1: end time of mean process, inferred automiatically when NULL (default)
-  #   :num.points: number of points to use in estimating mean process
-  #   :quantiles: calculate these quantile processes
-  
-  # Simulated processes
-  x = nhpp.sim(rate, num.events, prob.func, num.sims=num.sims, t0=t0, ...)
-  if(is.null(t1))
-    t1 = 1.1*max(x)
-  # Expected value process
-  x.bar = nhpp.mean(rate, prob.func, t0=t0, t1=t1, num.points=num.points, maximum=num.events)
-  # Quantile processes
-  x.q = t(apply(x, 1, function(x) quantile(x, probs=quantiles)))
-  return(
-    new("PoissonProcessScenario", x=x, x.bar=x.bar, 
-        x.bar.index=seq(t0, t1, length.out=num.points), x.q=x.q)
-  )
-}
-
